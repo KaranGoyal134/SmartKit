@@ -1,0 +1,53 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./server
+    ports:
+      - "3000:3000"
+    networks:
+      - smartkit_network
+    environment:
+      DATABASE_URL:
+      CLERK_PUBLISHABLE_KEY:
+      CLERK_SECRET_KEY: 
+      GEMINI_API_KEY: 
+      CLIPDROP_API_KEY: 
+      CLOUDINARY_CLOUD_NAME: 
+      CLOUDINARY_API_KEY: 
+      CLOUDINARY_API_SECRET: 
+      MONGO_URI: mongodb://mongodb:27017/mydatabase
+    depends_on:
+      - mongodb
+
+  frontend:
+    build: ./client
+    ports:
+      - "5173:5173"
+    networks:
+      - smartkit_network
+    environment:
+      VITE_CLERK_PUBLISHABLE_KEY: 
+      VITE_BASE_URL: http://backend:3000
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    networks:
+      - smartkit_network
+    volumes:
+      - smartkit-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  smartkit_network:
+    driver: bridge
+
+volumes:
+  smartkit-data:
+    driver: local
