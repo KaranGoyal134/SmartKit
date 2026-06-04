@@ -1,0 +1,11 @@
+name: CI Pipeline
+on: 
+  push:
+    branches:
+      - main
+jobs: 
+  deploy:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Testing
+        run: echo "This is template yaml."
