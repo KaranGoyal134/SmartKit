@@ -144,9 +144,9 @@ jobs:
 
       - name: Update frontend image
         run: |
-          chmod +x scripts/update-image.sh
+          chmod +x scripts/script.sh
 
-          ./scripts/update-image.sh \
+          ./scripts/script.sh \
             frontend \
             "${{ github.sha }}"
         env:
@@ -195,9 +195,9 @@ jobs:
 
       - name: Update backend image
         run: |
-          chmod +x scripts/update-image.sh
+          chmod +x scripts/script.sh
 
-          ./scripts/update-image.sh \
+          ./scripts/script.sh \
             backend \
             "${{ github.sha }}"
         env:

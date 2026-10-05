@@ -6,7 +6,7 @@ SERVICE="$1"
 TAG="$2"
 
 if [ -z "$SERVICE" ] || [ -z "$TAG" ]; then
-    echo "Usage: ./scripts/update-image.sh <frontend|backend> <tag>"
+    echo "Usage: ./scripts/script.sh <frontend|backend> <tag>"
     exit 1
 fi
 
