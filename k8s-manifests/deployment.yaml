@@ -1,0 +1,18 @@
+kind: Deployment
+version: apps/v1
+metadata:
+  name: smart-kit-frontend
+  labels:
+    env: dev
+spec:
+  selectors:
+    matchLabels:
+      env: dev
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        env: dev
+    containers:
+      - name: smartkit-frontend
+        image: smart-kit-frontend:
